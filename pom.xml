@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.francisco</groupId>
-	<artifactId>bookstore</artifactId>
+	<artifactId>projeto_aeronave</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bookstore</name>
+	<name>projeto_aeronave</name>
 	<description>Demo project for Spring Boot and angular 10</description>
 	<properties>
 		<java.version>11</java.version>
