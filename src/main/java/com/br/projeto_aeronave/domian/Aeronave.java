@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.br.projeto_aeronave.dtos.AeronaveDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,8 +23,12 @@ public class Aeronave implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	@NotEmpty(message = "Campo Marca é requerido")
+	@Length(min = 3, max = 50, message = "o campo Marca deve ter entre 3 e 50 caracteres")
 	private String marca;
 	private Integer ano;
+	@NotEmpty(message = "Campo Modelo é requerido")
+	@Length(min = 3, max = 50, message = "o campo Modelo deve ter entre 3 e 50 caracteres")
 	private String descricao;
 	private Boolean vendido;
 	

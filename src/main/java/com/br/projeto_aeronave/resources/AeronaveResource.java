@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,7 +47,7 @@ public class AeronaveResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<AeronaveDTO> create(@RequestBody AeronaveDTO objDTO) {
+	public ResponseEntity<AeronaveDTO> create( @Valid  @RequestBody AeronaveDTO objDTO) {
 
 		Aeronave newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
@@ -54,7 +56,7 @@ public class AeronaveResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<AeronaveDTO> update(@PathVariable Long id, @RequestBody AeronaveDTO objDTO){
+	public ResponseEntity<AeronaveDTO> update( @Valid @PathVariable Long id, @RequestBody AeronaveDTO objDTO){
 		
 		Aeronave obj = service.update(id, objDTO);
 		return ResponseEntity.ok().body(new AeronaveDTO(obj));
