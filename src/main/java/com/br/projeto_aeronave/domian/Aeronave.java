@@ -1,18 +1,15 @@
 package com.br.projeto_aeronave.domian;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
-
 import com.br.projeto_aeronave.dtos.AeronaveDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class Aeronave implements Serializable{
@@ -23,25 +20,24 @@ public class Aeronave implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	@NotEmpty(message = "Campo Marca é requerido")
+	
 	@Length(min = 3, max = 50, message = "o campo Marca deve ter entre 3 e 50 caracteres")
 	private String marca;
 	private Integer ano;
-	@NotEmpty(message = "Campo Modelo é requerido")
+	
 	@Length(min = 3, max = 50, message = "o campo Modelo deve ter entre 3 e 50 caracteres")
 	private String descricao;
 	private Boolean vendido;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	protected LocalDate created = LocalDate.now();
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	protected LocalDate update = LocalDate.now();
+	
+	protected Date created = new Date();
+	protected Date update = new Date();
 
 	public Aeronave() {
 		super();
 	}
 
-	public Aeronave(Long id, String nome, String marca, Integer ano, String descricao, Boolean vendido) {
+	public Aeronave(Long id, String nome, String marca, Integer ano, String descricao, Boolean vendido, Date created) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -49,6 +45,7 @@ public class Aeronave implements Serializable{
 		this.ano = ano;
 		this.descricao = descricao;
 		this.vendido = vendido;
+		this.created = created;
 	}
 
 	public Aeronave(AeronaveDTO objDTO) {
@@ -60,6 +57,7 @@ public class Aeronave implements Serializable{
 		this.ano = objDTO.getAno();
 		this.descricao = objDTO.getDescricao();
 		this.vendido = objDTO.getVendido();
+		this.created = objDTO.getCreated();
 		this.update = null;
 		
 	}
@@ -112,21 +110,23 @@ public class Aeronave implements Serializable{
 		this.vendido = vendido;
 	}
 
-	public LocalDate getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDate created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDate getUpdate() {
+	public Date getUpdate() {
 		return update;
 	}
 
-	public void setUpdate(LocalDate update) {
+	public void setUpdate(Date update) {
 		this.update = update;
 	}
+
+	
 	
 	
 	

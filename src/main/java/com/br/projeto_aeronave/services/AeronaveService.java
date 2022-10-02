@@ -77,7 +77,7 @@ public class AeronaveService implements Comparable<Aeronave> {
 
 	private void verificarOrtografiaMarca(int num) {
 		if (num != 0)
-			throw new ObjectNotFoundException("Marca digitada Não encontrado");
+			throw new ObjectNotFoundException("A descrição não corresponde, a nenhuma marcas de Aeronaves");
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.br.projeto_aeronave.config;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ public class TestConfig {
 	private DBservice dbService;
 	
 	@Bean
-	public void instanciaBaseDeDados() {
+	public void instanciaBaseDeDados() throws ParseException {
 		this.dbService.instanciaBaseDeDados();
 	}
 	

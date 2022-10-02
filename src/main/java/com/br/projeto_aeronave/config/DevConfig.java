@@ -1,5 +1,7 @@
 package com.br.projeto_aeronave.config;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +19,7 @@ public class DevConfig {
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 	
-	public boolean instanciaBaseDeDados() {
+	public boolean instanciaBaseDeDados() throws ParseException {
 		if(strategy.equals("create")) {
 			this.dbService.instanciaBaseDeDados();
 		}

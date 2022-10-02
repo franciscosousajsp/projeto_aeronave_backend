@@ -1,40 +1,28 @@
 package com.br.projeto_aeronave.dtos;
-
 import java.io.Serializable;
-import java.time.LocalDate;
-
-import javax.validation.constraints.NotEmpty;
-
+import java.util.Date;
 import org.hibernate.validator.constraints.Length;
-
 import com.br.projeto_aeronave.domian.Aeronave;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class AeronaveDTO implements Serializable{
-
+public class AeronaveDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
-	
-	@NotEmpty(message = "Campo Marca é requerido")
+
 	@Length(min = 3, max = 50, message = "o campo Marca deve ter entre 3 e 50 caracteres")
 	private String marca;
-	
 	private Integer ano;
-	@NotEmpty(message = "Campo Modelo é requerido")
 	@Length(min = 3, max = 50, message = "o campo Modelo deve ter entre 3 e 50 caracteres")
 	private String descricao;
 	private Boolean vendido;
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	protected LocalDate created = LocalDate.now();
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	protected LocalDate update = LocalDate.now();
-	
+	protected Date created = new Date();
+	protected Date update = new Date();
+
 	public AeronaveDTO() {
 		super();
-		
+
 	}
 
 	public AeronaveDTO(Aeronave obj) {
@@ -47,7 +35,7 @@ public class AeronaveDTO implements Serializable{
 		this.vendido = obj.getVendido();
 		this.created = obj.getCreated();
 		this.update = obj.getUpdate();
-		
+
 	}
 
 	public Long getId() {
@@ -98,22 +86,20 @@ public class AeronaveDTO implements Serializable{
 		this.vendido = vendido;
 	}
 
-	public LocalDate getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDate created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDate getUpdate() {
+	public Date getUpdate() {
 		return update;
 	}
 
-	public void setUpdate(LocalDate update) {
+	public void setUpdate(Date update) {
 		this.update = update;
 	}
-	
-	
-	
+
 }
